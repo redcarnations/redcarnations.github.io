@@ -521,7 +521,7 @@
   @media (max-width: 500px) {
     .single-count {
       width: 100%;
-      padding-bottom: 10px;
+      padding-bottom: 100px;
       border-bottom: 1px solid #fff; } }
 
 .single-count__text {
@@ -860,3 +860,20 @@
       .footer-bottom-inner p {
         font-size: 14px;
         margin-bottom: 20px; } }
+
+		
+		/* Style buttons */
+.btn {
+  background-color: #c18f59;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color:  #999999;
+}

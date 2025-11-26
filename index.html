@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Адвокат Сергеенко С.В.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+
+    :root {
+      --gold: #c5a46d;
+      --dark: #1f1f1f;
+      --text: #e8e8e8;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Merriweather', serif;
+      background-color: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      position: relative;
+    }
+
+    /* Затемнение фона */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('gavel.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: -1;
+      /* Добавляем затемнение */
+      background-color: rgba(0, 0, 0, 0.6);
+      background-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ====== ШАПКА ====== */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(20, 20, 20, 0.95);
+      backdrop-filter: blur(5px);
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(197, 164, 109, 0.3);
+      box-sizing: border-box;
+    }
+
+    .topbar.scrolled {
+      padding: 6px 30px;
+      background: rgba(15, 15, 15, 0.98);
+    }
+
+    .topbar .name {
+      font-weight: 700;
+      font-size: 17px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .topbar nav a {
+      margin: 0 10px;
+      color: #ccc;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .topbar nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 1px;
+      background-color: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .topbar nav a:hover {
+      color: var(--gold);
+    }
+
+    .topbar nav a:hover::after {
+      width: 100%;
+    }
+
+    .topbar .contact-info {
+      font-size: 15px;
+      color: #ddd;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .topbar .contact-info a {
+      color: var(--gold);
+      margin-left: 8px;
+    }
+
+    /* ====== ОСНОВНОЙ КОНТЕНТ ====== */
+    .container {
+      max-width: 1100px;
+      margin: 80px auto 0;
+      padding: 15px 20px;
+      /* Убрали background-color и backdrop-filter */
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background-color: var(--gold);
+      margin: 5px auto;
+    }
+
+    header.hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-top: 5px;
+    }
+
+    header.hero .hero-text {
+      max-width: 550px;
+    }
+
+    header.hero h1 {
+      font-size: 28px;
+      margin: 0 0 8px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+
+    header.hero p.subtitle {
+      font-size: 16px;
+      color: #ccc;
+      margin: 0 0 12px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
+    header.hero .hero-image {
+      flex-shrink: 0;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    header.hero .hero-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 8px 24px;
+      background-color: var(--gold);
+      color: #111;
+      border: none;
+      border-radius: 0;
+      font-size: 15px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary:hover {
+      background-color: #d5b47d;
+    }
+
+    section {
+      padding: 10px 0;
+      text-align: left;
+    }
+
+    section h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      border-bottom: 1px solid var(--gold);
+      display: inline-block;
+      padding-bottom: 5px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+
+    .about p {
+      margin-bottom: 8px;
+      color: #ddd;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
+    /* ====== ОБЛАСТИ ПРАКТИКИ ====== */
+    .practice-areas {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .practice-areas .area {
+      flex: 1;
+      min-width: 220px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid #444;
+      padding: 15px 12px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .practice-areas .area:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+    }
+
+    .practice-areas .area h3 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--gold);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
+    /* ====== КОНТАКТЫ ====== */
+    .contact-section {
+      text-align: center;
+      padding-bottom: 10px;
+    }
+
+    .contact-section p {
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: #ddd;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
+    .contact-section .btn-contact {
+      display: inline-block;
+      padding: 8px 24px;
+      background-color: #fff;
+      color: #111;
+      border: 2px solid var(--gold);
+      border-radius: 0;
+      font-size: 15px;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .contact-section .btn-contact:hover {
+      background-color: #f0f0f0;
+      border-color: #d5b47d;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #999;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 20px;
+      }
+      .topbar .contact-info {
+        margin-top: 6px;
+        font-size: 14px;
+        white-space: normal; /* Разрешаем перенос текста */
+        text-align: left;
+        width: 100%;
+      }
+      .topbar .contact-info a {
+        display: inline-block;
+        margin: 2px 0;
+      }
+      .container {
+        margin-top: 160px; /* Увеличили отступ для мобильных устройств */
+        padding: 12px 15px;
+      }
+      header.hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      header.hero .hero-image {
+        max-width: 80%;
+      }
+      .practice-areas {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .divider {
+        margin: 5px auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .topbar {
+        padding: 8px 15px;
+      }
+      .topbar .name {
+        font-size: 16px;
+      }
+      .topbar nav a {
+        margin: 0 6px;
+        font-size: 14px;
+      }
+      .topbar .contact-info {
+        font-size: 13px;
+      }
+      .container {
+        margin-top: 180px; /* Еще больше увеличили отступ для очень маленьких экранов */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar" id="topbar">
+    <div class="name">Сергеенко С.В.</div>
+    <nav>
+      <a href="#about">Обо мне</a>
+      <a href="#practice">Практика</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <div class="contact-info">
+      <a href="tel:+79832696789">+7 (983) 269-67-89</a> | 
+      <a href="mailto:sergeenkosv@yandex.net">sergeenkosv@yandex.net</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <div class="hero-text">
+        <h1>Сергеенко Сергей Викторович</h1>
+        <p class="subtitle">Адвокат. Защита. Представительство. Консультации.</p>
+        <a href="tel:+79832696789" class="btn-primary">Позвонить сейчас</a>
+      </div>
+      <div class="hero-image">
+        <img src="1.jpg" alt="Адвокат Сергеенко С.В.">
+      </div>
+    </header>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="container" id="about">
+    <section class="about">
+      <h2>Обо мне</h2>
+      <p>В 2003 году окончил Сибирский юридический институт МВД Российской Федерации по специальности «Юриспруденция».</p>
+      <p>С 2003 по 2005 — служба следователем, старшим следователем Минусинской межрайонной прокуратуры Красноярского края.</p>
+      <p>2005–2007 — старший следователь прокуратуры Советского района г. Красноярска.</p>
+      <p>2007–2010 — прокурор отдела надзора за следствием в прокуратуре Красноярского края.</p>
+      <p>В 2010 году получил статус адвоката (рег. № 24/1271, Адвокатская палата Красноярского края). С 2010 года практикую как адвокат.</p>
+      <p>В 2018 году награждён почётной грамотой президента Федеральной палаты адвокатов РФ Пилипенко Ю.С.</p>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="container" id="practice">
+    <section class="practice">
+      <h2>Области практики</h2>
+      <div class="practice-areas">
+        <div class="area"><h3>Уголовно-правовая защита</h3></div>
+        <div class="area"><h3>Гражданско-правовая практика</h3></div>
+        <div class="area"><h3>Арбитражная практика</h3></div>
+        <div class="area"><h3>Корпоративная практика</h3></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="container" id="contact">
+    <section class="contact-section">
+      <p>Нужна консультация или защита? Свяжитесь со мной прямо сейчас.</p>
+      <a href="tel:+79832696789" class="btn-contact">Связаться</a>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 Адвокат Сергеенко С.В. Все права защищены.
+  </footer>
+
+  <script>
+    window.addEventListener("scroll", function() {
+      const topbar = document.getElementById("topbar");
+      if (window.scrollY > 50) {
+        topbar.classList.add("scrolled");
+      } else {
+        topbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+
+</body>
+</html>
